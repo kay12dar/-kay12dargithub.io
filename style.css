@@ -1,0 +1,246 @@
+body{
+    background-image: url("img/body_back.png") ;
+    margin: 0;
+    
+}
+
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:#2B243C;
+    opacity: 0.9;
+    color: #fff;
+    text-align: center;
+    border-radius: 0 0 40px  40px ;
+    height: 70px;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    
+  }
+  
+  
+  .logo {
+    padding-left: 20px;
+    font-family: Impact, sans-serif;
+    font-size:15px;
+    font-weight: bold;
+    color:#EF5A83;
+  }
+
+  .header_button{
+    padding-right: 20px;
+  }
+  .header_button1{
+    background-color: #EF5A83;
+    border-radius: 40px 40px 40px  40px; 
+    width: 100px;
+    height: 50px;
+  }
+
+  .header_button1:hover{
+    background-color: #2B243C;
+  }
+
+  .header_button p:hover{
+    color:#EF5A83
+  }
+
+  .header_button p {
+    font-family: Impact, sans-serif;
+    font-size:15px;
+    font-weight: bold;
+    color:#2B243C;
+  }
+
+  main {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    margin: 0 auto; 
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  
+  section {
+    padding: 20px;
+  }
+  
+  .banner {
+    flex: 1;
+    background-image: url(banner.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+  }
+
+  .sub_bann{
+    background-color: #EF5A83;
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    border-radius: 40px 40px 40px  40px; 
+  }
+  .sub_bann_lvl2{
+    width: 370px;
+    height: 250px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 40px 40px 40px  40px;
+    animation: changeImage 2s linear infinite;  
+  }
+
+  .banner img{
+    width: 370px;
+    height: 250px;
+    border-radius: 39px 39px 39px  39px;
+  }
+
+  @keyframes changeImage {
+    from  {
+      background-image: url("img/baner1.png");
+    }
+    to {
+      background-image: url("img/baner2.png");
+    }
+  }
+
+  .link_button_group{
+    display: flex;
+    width: 370px;
+    flex-wrap:wrap;
+  }
+
+  .link_button{
+    background-color: #EF5A83;
+    border-radius: 40px 40px 40px  40px; 
+    width: 180px;
+    height: 70px;
+    margin-right: 5px;
+    margin-top: 10px;
+    transform: scale(1.0);
+     
+  }
+
+  .link_button p{
+    font-family: Impact, sans-serif;
+    font-size:20px;
+    font-weight: bold;
+    color:#2B243C;
+  }
+
+  .link_button:hover{
+    background-color: #2B243C;
+  }
+
+  .link_button p:hover{
+    color:#EF5A83
+    
+  }
+  
+  .banner h2 {
+    font-family: Impact, sans-serif;
+    font-size:50px;
+    font-weight: bold;
+    color:#2B243C;
+    margin: 0;
+  }
+
+  
+  
+  .shop {
+    flex: 1;
+    /* background-color: #f7f7f7; */
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    justify-content: flex-start;
+  }
+
+  .shop_link{
+    /* border: 10px solid #EF5A83; */
+    background-color: #EF5A83;
+    border-radius: 40px 40px 40px  40px; 
+    width: 400px;
+    height: 150px;
+    text-align: center;
+    /* margin-bottom: 20px; */
+    animation: backgroundColorAnimation 2s linear infinite;
+    
+  }
+
+  @keyframes backgroundColorAnimation {
+    from {
+        background-color: #EF5A83;
+    }
+    to {
+        background-color: #2B243C;
+    }
+}
+
+  .text_shop{
+    display: flex;
+    /* flex-direction: row; */
+  }
+  
+  .shop_link p {
+    font-family: Impact, sans-serif;
+    font-size:50px;
+    font-weight: bold;
+    color:#2B243C;
+    margin-bottom: 10em;
+    
+  }
+
+  .shop h2{
+    font-family: Impact, sans-serif;
+    font-weight: bold;
+    color:#2B243C;
+    font-size: 150px;
+    margin: 0px;
+  } 
+
+  .info{
+    border: 10px solid #EF5A83;
+    border-radius: 40px 40px 40px  40px;
+    width: 950px;
+    height: 350px;
+    text-align: center;
+  }
+
+  .info p {
+    font-family: Impact, sans-serif;
+    font-size:100px;
+    font-weight: bold;
+    color:#EF5A83;
+  }
+  /* .shop p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    
+  } */
+  
+  .shop a {
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+ 
+  
+  footer {
+    /* background-color: #333; */
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    width: 95%;
+    margin: 0 auto;
+  }
+
