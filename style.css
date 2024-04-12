@@ -4,7 +4,46 @@ body{
     
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #2B243C; /* Цвет фона */
+  border-radius: 5px; /* Скругленные углы */
+  border: 5px solid #EF5A83; /* Граница */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown button { /* Стили для кнопки */
+  background-color: #2B243C; 
+  color: #EF5A83; 
+  padding: 12px 16px;
+  font-family: Impact, sans-serif;
+  border: 5px solid #EF5A83;
+  border-radius: 5px;
+}
+
+.dropdown-content a {
+  color: #EF5A83; /* Цвет текста */
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-family: Impact, sans-serif; /* Шрифт */
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
   header {
     display: flex;
     align-items: center;

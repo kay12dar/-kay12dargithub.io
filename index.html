@@ -15,8 +15,19 @@
         
         <button class="header_button1" onclick="window.location.href='фывфывфв.html'"><p>Log in</p></button>
     </div>
+    <!-- <a id="myLink" href="">Ссылка лб12 задание1
+    </a> -->
   </header>
-
+  <div class="dropdown">
+    <button >Меню</button>
+    <div class="dropdown-content">
+      <a id="myLink" href="#">лаб12_задание1</a>
+      <a href="lb3/lab12_form.html">лаб12_задание2-3</a>
+      <a href="lb3/int_map.html">Карта</a>
+      <a href="lb3/lb13-task2.html">Замена текста и картинок</a>
+      <a href="lb3/lb14.html">Диаграмма</a>
+    </div>
+  </div>
   <!-- <nav>
     <a href="#">Главная</a>
     <a href="#">Игры</a>
@@ -78,5 +89,14 @@
   <footer>
     &copy; 2024 miHoYo
   </footer>
+  <script>
+    function openNewWindow() {
+    const newWindow = window.open("", "", "width=400,height=200");
+    newWindow.document.write("Это текст в новом окне.");
+}
+
+const link = document.getElementById("myLink");
+link.addEventListener("click", openNewWindow);
+  </script>
 </body>
 </html>
