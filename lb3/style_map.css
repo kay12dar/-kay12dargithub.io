@@ -1,0 +1,47 @@
+body {
+    background-image: url("img_map/body_back.png"); 
+  }
+
+.container {
+    display: flex;
+  }
+  
+  .info-block {
+    width: 200px;
+    height: 300px;
+    margin-right: 20px;
+    background-color: #2B243C; /* Заливка цветом #2B243C */
+    border: 5px solid #EF5A83; /* Рамка 5px с цветом #EF5A83 */
+    border-radius: 10px; /* Закругление углов */
+    color: #EF5A83; /* Цвет текста */
+    font-family: Impact, sans-serif; /* Шрифт Impact */
+    padding: 10px; /* Отступы внутри блока */
+    text-shadow: 2px 2px 4px #000000;
+  }
+  
+  .map-container {
+    position: relative;
+  }
+
+  .map-container img {
+    object-fit: cover; 
+    border-radius: 10px; /* Закругление углов изображения */
+  }
+  
+  area {
+    cursor: pointer;
+    background: #000;
+  }
+  
+  .tooltip {
+    display: none;
+    position: absolute;
+    background-color: #2B243C;
+    border: 5px solid #EF5A83;
+    border-radius: 10px;
+    color: #EF5A83; /* Цвет текста */
+    font-family: Impact, sans-serif; /* Шрифт Impact */
+    font-size: small;
+    padding: 10px; /* Отступы внутри блока */
+    text-shadow: 2px 2px 4px #000000;
+  }

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Форма регистрации</title>
+</head>
+<style>
+        body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url("img_map/body_back.png");
+        font-family: Impact, sans-serif; /* Изменен шрифт */
+        }
+
+        h2{
+            color: #EF5A83;
+        }
+
+        .form-container {
+        background-color: #2B243C;
+        /* background-color: rgba(43, 36, 60, 0.8); Полупрозрачный фон */
+        border: 5px solid #EF5A83;
+        border-radius: 10px;
+        padding: 20px;
+        width: 600px;
+        }
+
+        label {
+        display: block;
+        margin-bottom: 5px;
+        color: #EF5A83; /* Цвет текста label */
+        }
+
+        .interests  {
+        display: inline-block; /* Размещаем label в одну строку */
+        margin-right: 20px; /* Добавляем отступ между чекбоксами */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: #2B243C; /* Цвет фона полей */
+        color: #EF5A83; /* Цвет текста в полях */
+        }
+
+        button {    
+        background-color: #EF5A83;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        }
+</style>
+
+<body>
+    <div class="form-container">
+    <h2>Форма регистрации</h2>
+    <form id="registrationForm">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="country">Страна:</label>
+        <select id="country" name="country" required>
+        <option value="">Выберите страну</option>
+        <option value="ru">Россия</option>
+        <option value="ua">Украина</option>
+        <option value="by">Беларусь</option>
+        </select>
+        <br>
+        <label for="gender">Пол:</label>
+        <select id="gender" name="gender">
+        <option value="">Выберите пол</option>
+        <option value="male">Мужской</option>
+        <option value="female">Женский</option>
+        </select>
+        <br>
+        <label class="interests"> Интересы:</label>
+        <input type="checkbox" id="sport" name="interests[]" value="sport">
+        <label class="interests" for="sport">Спорт</label>
+        <input type="checkbox" id="music" name="interests[]" value="music">
+        <label class="interests" for="music">Музыка</label>
+        <input type="checkbox" id="travel" name="interests[]" value="travel">
+        <label class="interests" for="travel">Путешествия</label>
+        <br>
+        <label for="about">О себе:</label>
+        <textarea id="about" name="about"></textarea>
+        <br>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script >
+        $(document).ready(function() {
+            $("#registrationForm").submit(function(event) {
+                // Предотвращаем отправку формы по умолчанию
+                event.preventDefault();
+
+                // Валидация имени пользователя
+                var username = $("#username").val();
+                if (username.length < 3) {
+                alert("Имя пользователя должно быть не менее 3 символов.");
+                return;
+                }
+
+                // Валидация email
+                var email = $("#email").val();
+                if (!validateEmail(email)) {
+                alert("Введите корректный email.");
+                return;
+                }
+
+                var password = $("#password").val();
+                    if (password.length < 6) {
+                    alert("Пароль должен быть не менее 6 символов.");
+                    return;
+                    }
+
+                    // Валидация страны (проверка, что выбрана опция)
+                    var country = $("#country").val();
+                    if (country === "") {
+                    alert("Пожалуйста, выберите страну.");
+                    return;
+                    }
+
+                    // Валидация пола (проверка, что выбран хотя бы один вариант)
+                    var gender = $("#gender").val();
+                    if (gender === "") {
+                    alert("Пожалуйста, выберите пол.");
+                    return;
+                    }
+
+                    // Валидация интересов (проверка, что выбран хотя бы один интерес)
+                    if (!$("input[name='interests[]']").is(":checked")) {
+                    alert("Пожалуйста, выберите хотя бы один интерес.");
+                    return;
+                    }
+
+                    // Валидация "О себе" (проверка на минимальную длину)
+                    var about = $("#about").val();
+                    if (about.length < 10) {
+                    alert("Пожалуйста, напишите немного о себе (минимум 10 символов).");
+                    return;
+                    }
+
+                    // Если все поля валидны, отправьте форму
+                    alert("Форма успешно отправлена!");
+                    // $(this).unbind('submit').submit(); // Отправка формы
+                    var userData = {
+                    username: $("#username").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val(),
+                    country: $("#country").val(),
+                    gender: $("input[name='gender']:checked").val(),
+                    interests: [],
+                    about: $("#about").val()
+                    };
+
+                    // Получаем выбранные интересы
+                    $("input[name='interests[]']:checked").each(function() {
+                    userData.interests.push($(this).val());
+                    });
+
+                    // Создаём кнопку для отображения данных
+                    var showDataButton = $('<button type="button">Показать данные</button>');
+                    $("#registrationForm").append(showDataButton);
+
+                    // Обработчик клика для кнопки "Показать данные"
+                    showDataButton.click(function() {
+                    // Открываем новую вкладку и отображаем данные пользователя в формате JSON
+                    var newWindow = window.open();
+                    newWindow.document.write('<pre>' + JSON.stringify(userData, null, 2) + '</pre>');
+                    });
+
+                });
+
+
+            // Функция для валидации email
+            function validateEmail(email) {
+                var re = /\S+@\S+\.\S+/;
+                return re.test(email);
+            }
+            });
+
+  </script>
+</body>
+</html>

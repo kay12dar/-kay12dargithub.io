@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Диаграмма</title>
+    <style>
+        body {
+            background-image: url("img_map/body_back.png");
+        }
+
+        #chartContainer {
+            background-color: white;
+            border: 5px solid #EF5A83;
+            border-radius: 5px;
+            padding: 10px; /* Отступ внутри блока */
+            width: 900px;
+            height:600px;
+            margin: 0 auto;
+        }
+
+        /* Стили для текста диаграммы
+        .chartjs-render-monitor {
+            color: #EF5A83;
+        } */
+    </style>
+</head>
+<body>
+    <div id="chartContainer">
+        <canvas id="myChart"></canvas>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function() {
+            const countryData = {
+                china: {
+                name: "Китай",
+                donations: 44
+                },
+                usa: {
+                    name: "США",
+                    donations: 24
+                },
+                japan: {
+                    name: "Япония",
+                    donations: 19
+                },
+                southKorea: {
+                    name: "Южная Корея",
+                    donations: 6
+                },
+                germany: {
+                    name: "Германия",
+                    donations: 5.5
+                },
+                uk: {
+                    name: "Великобритания",
+                    donations: 4.5
+                },
+                france: {
+                    name: "Франция",
+                    donations: 4
+                },
+                canada: {
+                    name: "Канада",
+                    donations: 3.5
+                },
+                australia: {
+                    name: "Австралия",
+                    donations: 3
+                },
+                italy: {
+                    name: "Италия",
+                    donations: 2.5
+                }
+            };
+
+    const labels = [];
+    const data = [];
+
+    for (const countryCode in countryData) {
+        labels.push(countryData[countryCode].name);
+        data.push(countryData[countryCode].donations);
+    }
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'polarArea',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.5)', // Красный (Китай)
+                'rgba(54, 162, 235, 0.5)', // Синий (США)
+                'rgba(255, 206, 86, 0.5)', // Желтый (Япония)
+                'rgba(75, 192, 192, 0.5)', // Зеленый (Южная Корея)
+                'rgba(153, 102, 255, 0.5)', // Фиолетовый (Германия)
+                'rgba(255, 159, 64, 0.5)', // Оранжевый (Великобритания)
+                'rgba(255, 99, 132, 0.5)', // Красный (Франция)
+                'rgba(54, 162, 235, 0.5)', // Синий (Канада)
+                'rgba(255, 206, 86, 0.5)', // Желтый (Австралия)
+                'rgba(75, 192, 192, 0.5)'  // Зеленый (Италия) 
+                ],
+                borderWidth: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: 1000, // Длительность анимации
+                easing: 'easeOutQuart' // Тип анимации
+            },
+            plugins: {
+                tooltip: {
+                    enabled: true, // Включение всплывающих подсказок
+                }
+            }
+        }
+    });
+});
+    </script>
+</body>
+</html>

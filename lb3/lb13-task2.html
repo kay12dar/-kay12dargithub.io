@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Топ стран по игровым донатам</title>
+    <style>
+        body {
+            background-image: url("img_map/body_back.png");
+            font-family: Impact;
+        }
+        .container {
+            display: flex;
+            /* justify-content: center; */
+            align-items: flex-start;
+            /* margin-top: 50px; */
+        }
+        .block {
+            background-color: #2B243C;
+            color: #EF5A83;
+            border: 5px solid #EF5A83;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 20px;
+            opacity: 10px;
+            /* text-align: center; */
+        }
+        .country-list li {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        img {
+            width: 50px; 
+        }
+        #info-block {
+            display: none;
+        }
+         
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="block country-list">
+            <h2>Топ стран по донатам</h2>
+            <ol>
+              <li class="country" data-country="china">Китай</li>
+              <li class="country" data-country="usa">США</li>
+              <li class="country" data-country="japan">Япония</li>
+              <li class="country" data-country="southKorea">Южная Корея</li>
+              <li class="country" data-country="germany">Германия</li>
+              <li class="country" data-country="uk">Великобритания</li>
+              <li class="country" data-country="france">Франция</li>
+              <li class="country" data-country="canada">Канада</li>
+              <li class="country" data-country="australia">Австралия</li>
+              <li class="country" data-country="italy">Италия</li>
+            </ol>
+        </div>
+        <div id="info-block" class="block">
+            <h2 id="country-name"></h2>
+            <img id="coat-of-arms" src="" alt="Герб">
+            <p id="country-info"></p>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var countryData = {
+              china: {
+                  name: "Китай",
+                  coatOfArms: "china.png",
+                  info: "Объем донатов: ~$44 млрд (2023).<br>Популярность мобильных игр: 60%.<br>Жанровые предпочтения: RPG, MOBA и гача-игры.<br>Влияние киберспорта: Высокий."
+              },
+              usa: {
+                  name: "США",
+                  coatOfArms: "usa.png",
+                  info: "Объем донатов: ~$24 млрд (2023).<br>Популярность мобильных игр: 45%.<br>Жанровые предпочтения: Шутеры от первого лица, спортивные симуляторы и RPG.<br>Влияние киберспорта: Высокий."
+              },
+              japan: {
+                  name: "Япония",
+                  coatOfArms: "japan.png",
+                  info: "Объем донатов: ~$19 млрд (2023).<br>Популярность мобильных игр: 70%.<br>Жанровые предпочтения: RPG и гача-игры.<br>Влияние киберспорта: Средний."
+              },
+              southKorea: {
+                  name: "Южная Корея",
+                  coatOfArms: "south_korea.png",
+                  info: "Объем донатов: ~$6 млрд (2023).<br>Популярность мобильных игр: 55%.<br>Жанровые предпочтения: MMORPG и соревновательные онлайн-игры.<br>Влияние киберспорта: Очень высокий."
+              },
+              germany: {
+                  name: "Германия",
+                  coatOfArms: "germany.png",
+                  info: "Объем донатов: ~$5.5 млрд (2023).<br>Популярность мобильных игр: 40%.<br>Жанровые предпочтения: Стратегии, RPG и симуляторы.<br>Влияние киберспорта: Средний."
+              },
+              uk: {
+                  name: "Великобритания",
+                  coatOfArms: "uk.png",
+                  info: "Объем донатов: ~$4.5 млрд (2023).<br>Популярность мобильных игр: 48%.<br>Жанровые предпочтения: Шутеры от первого лица, спортивные игры и приключенческие игры.<br>Влияние киберспорта: Высокий."
+              },
+              france: {
+                  name: "Франция",
+                  coatOfArms: "france.png",
+                  info: "Объем донатов: ~$4 млрд (2023).<br>Популярность мобильных игр: 50%.<br>Жанровые предпочтения: Приключенческие игры, RPG и гоночные игры.<br>Влияние киберспорта: Средний."
+              },
+              canada: {
+                  name: "Канада",
+                  coatOfArms: "canada.png",
+                  info: "Объем донатов: ~$3.5 млрд (2023).<br>Популярность мобильных игр: 42%.<br>Жанровые предпочтения: Спортивные игры, шутеры от первого лица и RPG.<br>Влияние киберспорта: Высокий."
+              },
+              australia: {
+                  name: "Австралия",
+                  coatOfArms: "australia.png",
+                  info: "Объем донатов: ~$3 млрд (2023).<br>Популярность мобильных игр: 53%.<br>Жанровые предпочтения: Спортивные игры, RPG и приключенческие игры.<br>Влияние киберспорта: Средний."
+              },
+              italy: {
+                  name: "Италия",
+                  coatOfArms: "italy.png",
+                  info: "Объем донатов: ~$2.5 млрд (2023).<br>Популярность мобильных игр: 65%.<br>Жанровые предпочтения: RPG, стратегии и казуальные игры.<br>Влияние киберспорта: Средний."
+              }
+          };
+           
+
+            $(".country-list li").hover(function(){
+                var countryCode = $(this).data("country");
+                var country = countryData[countryCode];
+                $("#country-name").text(country.name);
+                $("#coat-of-arms").attr("src", "img_map/" + country.coatOfArms);
+                $("#country-info").html(country.info);
+                $("#info-block").show();  
+            }, function(){
+                $("#info-block").hide();
+            });
+
+    //         $("#countriesList li").hover(function() {
+    //     const countryCode = $(this).data("country");
+    //     const country = countryData[countryCode];
+
+    //     // Замена текста на герб
+    //     $(this).html(`<img src="img_map/${country.coatOfArms}" alt="${country.name}">`);
+
+    //     // Заполнение и показ блока информации
+    //     $("#countryInfo h2").text(country.name);
+    //     $("#countryInfo p").html(country.info);
+    //     $("#countryInfo").show();
+    // }, function() {
+    //     // Восстановление текста и скрытие блока информации
+    //     const countryCode = $(this).data("country");
+    //     const country = countryData[countryCode];
+    //     $(this).text(country.name);
+    //     $("#countryInfo").hide();
+    // });
+        });
+
+
+      
+    </script>
+</body>
+</html>
