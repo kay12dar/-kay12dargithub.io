@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Нахождение числа в ряду</title>
+</head>
+<body>
+
+  <h2>Нахождение первого числа в ряду, большего заданного</h2>
+
+  <label for="inputNumber">Введите число a:</label><br>
+  <input type="text" id="inputNumber"><br><br>
+
+  <button onclick="findNumber()">Найти число</button><br><br>
+
+  <label for="result">Результат:</label><br>
+  <textarea id="result" rows="4" cols="50" readonly></textarea>
+
+  <script>
+    function findNumber() {
+      // Получение введенного числа a
+      const a = parseFloat(document.getElementById("inputNumber").value);
+
+      // Инициализация переменных
+      let sum = 1;
+      let n = 1;
+
+      // Цикл для нахождения первого числа в ряду, большего a
+      while (sum <= a) {
+        sum += 1 / n;
+        n++;
+      }
+
+      // Вывод результата
+      document.getElementById("result").value = `Первое число, большее ${a}: ${sum}`;
+    }
+  </script>
+
+</body>
+</html>
