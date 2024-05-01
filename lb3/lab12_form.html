@@ -99,6 +99,8 @@
         <br>
         <label for="about">О себе:</label>
         <textarea id="about" name="about"></textarea>
+        <label for="secretWord">Секретное слово:</label>
+        <textarea id="secretWord" name="about"></textarea>
         <br>
         <button type="submit">Зарегистрироваться</button>
     </form>
@@ -156,6 +158,12 @@
                     alert("Пожалуйста, напишите немного о себе (минимум 10 символов).");
                     return;
                     }
+                    
+                    var secretWord = $("#secretWord").val(); 
+                    if (secretWord === "") {
+                    alert("Пожалуйста, введите секретное слово");
+                    return;
+                    }
 
                     // Если все поля валидны, отправьте форму
                     alert("Форма успешно отправлена!");
@@ -167,7 +175,8 @@
                     country: $("#country").val(),
                     gender: $("input[name='gender']:checked").val(),
                     interests: [],
-                    about: $("#about").val()
+                    about: $("#about").val(),
+                    secretWord: secretWord
                     };
 
                     // Получаем выбранные интересы
@@ -181,10 +190,21 @@
 
                     // Обработчик клика для кнопки "Показать данные"
                     showDataButton.click(function() {
-                    // Открываем новую вкладку и отображаем данные пользователя в формате JSON
+                    // Запрашиваем секретное слово
+                    var enteredSecretWord = prompt("Введите секретное слово:");
+
+                    // Проверяем секретное слово 
+                    if (enteredSecretWord === secretWord) {
+                    // Открываем новую вкладку и отображаем данные пользователя
                     var newWindow = window.open();
-                    newWindow.document.write('<pre>' + JSON.stringify(userData, null, 2) + '</pre>');
+                    newWindow.document.write('' + JSON.stringify(userData, null, 2) + '');
+                    } else {
+                    alert("Неверно введенное секретное слово!");
+                    }
                     });
+
+                    // Устанавливаем cookie с данными пользователя
+                     setCookie('userData', JSON.stringify(userData), 2);
 
                 });
 
@@ -194,6 +214,39 @@
                 var re = /\S+@\S+\.\S+/;
                 return re.test(email);
             }
+
+            // Функция для установки cookie
+                function setCookie(name, value, days) {
+                    var expires = "";
+                    if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days*24*60*60*1000));
+                    expires = "; expires=" + date.toUTCString();
+                    }
+                    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+                }
+
+                // Функция для получения cookie
+                function getCookie(name) {
+                    var nameEQ = name + "=";
+                    var ca = document.cookie.split(';');
+                    for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+                    }
+                    return null;
+                }
+
+                // Вывод данных из cookie на страницу (например, под формой)
+                var savedData = getCookie('userData');
+                if (savedData) {
+                    var userData = JSON.parse(savedData);
+                    var dataDiv = $('');
+                    dataDiv.text("Сохраненные данные: " + JSON.stringify(userData));
+                    $("#registrationForm").after(dataDiv);
+                }
+
             });
 
   </script>
