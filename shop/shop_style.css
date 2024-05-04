@@ -1,0 +1,44 @@
+
+main {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+     height: 84vh; 
+    
+}
+
+.games {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.game {
+    width: 300px;
+    text-align: center;
+}
+
+.game img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.game:hover img {
+    transform: scale(1.1); /* Увеличиваем картинку на 10% */
+    cursor: pointer; /* Добавляем курсор-указатель */
+  }
+
+.game span {
+    display: block;
+    margin-top: 5px;
+    height: 20px;
+    color: #EF5A83;
+    font-weight: bold;
+    background-color: #2B243C;
+    border-radius: 10px;
+}
+
